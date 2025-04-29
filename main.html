@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Instagram Preview</title>
+
+        <style>
+            body {
+                font-family: sans-serif;
+                background-color: #1e1e1e; /* Dark mode background */
+                color: #f0f0f0; /* Dark mode text color */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                margin: 0;
+            }
+
+            .container {
+                background-color: #2d2d2d; /* Container background */
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                text-align: center;
+            }
+
+            .preview-image {
+                max-width: 300px;
+                max-height: 300px;
+                border-radius: 4px;
+                margin-bottom: 10px;
+                border: 1px solid #444;
+                object-fit: cover; /* Ensure image covers the area */
+            }
+
+            .link-container {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .link-input {
+                background-color: #333;
+                color: #f0f0f0;
+                border: 1px solid #555;
+                border-radius: 4px;
+                padding: 8px;
+                width: 100%;
+                box-sizing: border-box;
+                font-size: 0.9em;
+            }
+
+            .copy-button {
+                background-color: #5865f2; /* Discord blurple */
+                color: #f0f0f0;
+                border: none;
+                border-radius: 4px;
+                padding: 10px 15px;
+                cursor: pointer;
+                font-size: 0.9em;
+                transition: background-color 0.2s ease;
+            }
+
+            .copy-button:hover {
+                background-color: #4752c4;
+            }
+
+            .copied-message {
+                color: #43b581; /* Discord green */
+                font-size: 0.8em;
+                margin-top: 5px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <img id="preview" class="preview-image" src="[INSERISCI L'URL DELL'IMMAGINE QUI]" alt="Anteprima Post">
+            <div class="link-container">
+                <input type="text" id="linkInput" class="link-input" value="[INSERISCI IL LINK DEL POST QUI]" readonly>
+                <button class="copy-button" onclick="copyLink()">Copia Link</button>
+                <p id="copied" class="copied-message" style="display:none;">Link Copiato!</p>
+            </div>
+        </div>
+
+        <script>
+            function copyLink() {
+                const linkInput = document.getElementById("linkInput");
+                linkInput.select();
+                document.execCommand("copy");
+                const copiedMessage = document.getElementById("copied");
+                copiedMessage.style.display = "block";
+                setTimeout(() => {
+                    copiedMessage.style.display = "none";
+                }, 1500);
+            }
+        </script>
+    </body>
+</html>
